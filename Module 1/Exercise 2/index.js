@@ -7,17 +7,23 @@ class Song {
 const songListPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
     const song = new Song("Song Title", [{ name: "Artist Name 1" }], 200);
-    resolve(song);
-    // reject(new Error("Failed to fetch songs"));
-  }, 300);
+    let chance = Math.random();
+    console.log(chance)
+    if (chance < 0.3) {
+      
+      reject(new Error("Failed to fetch songs"));
+    } else {
+      resolve(song);
+    }
+  }, 2000);
 });
 
 // using promise
-const getSongList = (songListPromise) => {
-  songListPromise.then((songs) => console.log(songs)).catch((error) => console.error(error));
-};
+// const getSongList = (songListPromise) => {
+//   songListPromise.then((songs) => console.log(songs)).catch((error) => console.error(error));
+// };
 
-getSongList(songListPromise);
+// getSongList(songListPromise);
 
 // using async await
 const getSongAsync = async (songListPromise) => {
