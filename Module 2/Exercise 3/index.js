@@ -9,10 +9,10 @@ app.use(express.urlencoded({ extended: false }));
 const transactionRouter = require("./routers/transactionRouter");
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send("Welcome to Mobile Banking");
 });
 
-app.use(transactionRouter);
+app.use("/transactions", transactionRouter);
 
 app.listen(port, () => {
   console.log(`Server listening at port ${port}`);

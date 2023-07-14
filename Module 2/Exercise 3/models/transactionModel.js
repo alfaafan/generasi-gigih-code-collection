@@ -8,15 +8,18 @@ let transactions = [
   },
 ];
 
-const generateTransactionId = () => {
-  return Math.random().toString(36).substring(2, 9);
-};
+class Transaction {
+  generateTransactionId() {
+    return Math.random().toString(36).substring(2, 9);
+  }
 
-module.exports = {
-  transactions,
-  createTransaction: (sourceId, destinationId, amount) => {
+  getAllTransactions() {
+    return transactions;
+  }
+
+  createTransaction(sourceId, destinationId, amount) {
     const transaction = {
-      transactionId: generateTransactionId(),
+      transactionId: this.generateTransactionId(),
       sourceId,
       destinationId,
       amount,
@@ -24,5 +27,7 @@ module.exports = {
     };
     transactions.push(transaction);
     return transaction;
-  },
-};
+  }
+}
+
+module.exports = Transaction;

@@ -13,23 +13,28 @@ let customers = [
   },
 ];
 
-module.exports = {
-  getAllCustomers: () => {
+class Customer {
+  generateCustomerId() {
+    return Math.random().toString(10).substring(2, 6);
+  }
+
+  getAllCustomers() {
     return customers;
-  },
-  getCustomer: (customerId) => {
+  }
+
+  getCustomer(customerId) {
     return customers.find((c) => c.customerId === customerId);
-  },
-  createCustomer: (name, email, initialBalance) => {
+  }
+
+  createCustomer(name, email, initialBalance) {
     let newCustomer = {
-      customerId: generateCustomerId(),
+      customerId: this.generateCustomerId(),
       name: name,
       email: email,
       balance: initialBalance,
     };
     return newCustomer;
-  },
-  generateCustomerId: () => {
-    return Math.random().toString(10).substring(2, 6);
-  },
-};
+  }
+}
+
+module.exports = Customer;

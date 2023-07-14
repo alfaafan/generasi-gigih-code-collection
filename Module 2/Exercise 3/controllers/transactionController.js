@@ -1,4 +1,4 @@
-const { transactions } = require("../models/transactionModel");
+const Transaction = require("../models/transactionModel");
 const { transfer } = require("../services/transactionService");
 
 module.exports = {
@@ -15,6 +15,11 @@ module.exports = {
     }
   },
   getTransaction: (req, res) => {
-    res.status(200).send(transactions);
+    try {
+      const transactions = new Transaction();
+      res.status(200).send(transactions.getAllTransactions());
+    } catch (e) {
+      res.status(500).json({ error: e.message });
+    }
   },
 };
